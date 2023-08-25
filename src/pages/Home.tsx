@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Wrapper from "../components/Wrapper";
 import Footer from "../ui/Footer";
 import Header from "../ui/Header";
