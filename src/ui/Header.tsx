@@ -8,11 +8,21 @@ import TextButton from "../components/TextButton";
 import FlexWrapper from "../components/FlexWrapper";
 import Displays from "../Displays";
 import menu from "../assets/menu.svg";
+import close from "../assets/close.svg";
 import { useEffect, useState } from "react";
-export default function Header() {
+
+interface Props {
+  menuOpened: boolean;
+  handleClick: () => void;
+}
+
+export default function Header({ handleClick, menuOpened }: Props) {
   const [color, setColor] = useState("rgba(255, 255, 255, 0.25)");
   const [border, setBorder] = useState("2px solid #f9f9f9");
   const [shadow, setShadow] = useState("none");
+
+  
+  const imageSource = menuOpened ? close : menu;
 
   const handleScroll = () => {
     if (color === "rgba(255, 255, 255, 0.25)") {
@@ -54,7 +64,7 @@ export default function Header() {
             <img src={arrowdown} alt="arrow down" />
           </MainNavItem>
         </MainNavigation>
-        <Menu src={menu} alt="Menu Icon" />
+        <Menu src={imageSource} alt="Menu Icon" onClick={handleClick} />
       </HeaderPart>
       <HeaderPartPink $color={color} $shadow={shadow}>
         <SecondaryNav>
@@ -76,8 +86,7 @@ const HeaderWrapper = styled.header`
   position: fixed;
   z-index: 10;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
 `;
 const HeaderPart = styled.div<{ $border?: string }>`
   width: 100%;

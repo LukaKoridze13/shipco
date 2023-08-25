@@ -8,6 +8,7 @@ import store4 from "../assets/store4.png";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import FlexWrapper from "../components/FlexWrapper";
+import Displays from "../Displays";
 export default function OnlineStore() {
   return (
     <Section>
@@ -21,8 +22,7 @@ export default function OnlineStore() {
           <img src={arrow} alt="Arrow" />
         </ShowMore>
       </Flexible>
-
-      <Swiper slidesPerView={'auto'}>
+      <Swiper loop={false} slidesPerView={"auto"} spaceBetween={30} className="mySwiper">
         <SwiperSlide style={{ cursor: "pointer" }}>
           <Img src={store1} alt="store" />
         </SwiperSlide>
@@ -48,6 +48,10 @@ export default function OnlineStore() {
           <Img src={store4} alt="store" />
         </SwiperSlide>
       </Swiper>
+      <ShowMore>
+        <span>Show more</span>
+        <img src={arrow} alt="Arrow" />
+      </ShowMore>
     </Section>
   );
 }
@@ -60,12 +64,24 @@ const Section = styled.section`
   border-top: 4px solid #ffc80a;
   background: #f1e0a4;
   padding: 72px 72px 160px 72px;
+
+  @media (max-width: ${Displays.mobile}) {
+    border-radius:0px;
+    border: none;
+    padding: 24px;
+  }
 `;
 
 const Title = styled.h3`
   color: #000;
   font-size: 36px;
   font-weight: 500;
+  font-size: 24px;
+
+  @media (max-width: ${Displays.tablet}) {
+    font-size: 24px;  
+    font-weight: 400;
+  }
 `;
 
 const Text = styled.p`
@@ -73,6 +89,11 @@ const Text = styled.p`
   font-size: 20px;
   font-weight: 400;
   max-width: 710px;
+
+  @media (max-width: ${Displays.tablet}) {
+    font-size: 16px;  
+    width: 90%;
+  }
 `;
 
 const ShowMore = styled.div`
@@ -86,14 +107,23 @@ const ShowMore = styled.div`
   font-weight: 500;
 
   cursor: pointer;
+
+  &:nth-child(3) {
+    display: none;
+  }
+
+  @media (max-width: ${Displays.tablet}) {
+    display: none;
+    &:nth-child(3) {
+      display: flex;
+      width: fit-content;
+      margin-top:24px;
+    }
+  }
 `;
 
 const Img = styled.img`
-  width: 22vw;
-  max-width: 250px;
-  @media (max-width: 480px) {
-    width: 50vw;
-  }
+  width: 250px;
 `;
 
 const Div = styled.div``;
@@ -102,4 +132,7 @@ const Flexible = styled(FlexWrapper)`
   justify-content: space-between;
   align-items: flex-end;
   margin-bottom: 40px;
+  @media (max-width: ${Displays.tablet}) {
+    margin-bottom:24px;
+  }
 `;
