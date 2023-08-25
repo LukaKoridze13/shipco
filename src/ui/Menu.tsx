@@ -6,9 +6,11 @@ import TextButton from "../components/TextButton";
 
 interface Props {
   opened: boolean;
+  openLogin: () => void;
+  openRegister: () => void;
 }
 
-export default function Menu({ opened }: Props) {
+export default function Menu({ opened, openLogin, openRegister }: Props) {
   return (
     <Wrapper $opened={opened}>
       <Content $opened={opened}>
@@ -29,8 +31,8 @@ export default function Menu({ opened }: Props) {
             <img src={arrowdown} alt="arrow down" />
           </Language>
         </Wrap>
-        <Button>Log in</Button>
-        <Register>Registration</Register>
+        <Button onClick={openLogin}>Log in</Button>
+        <Register onClick={openRegister}>Registration</Register>
       </Content>
     </Wrapper>
   );
@@ -47,6 +49,7 @@ const Wrapper = styled.div<{ $opened: boolean }>`
   padding-top: 65.29px;
 
   opacity: ${(props) => (props.$opened ? "1" : "0")};
+  pointer-events: ${(props) => (props.$opened ? "all" : "none")};
 
   background: rgba(0, 0, 0, 0.45);
 `;

@@ -14,14 +14,16 @@ import { useEffect, useState } from "react";
 interface Props {
   menuOpened: boolean;
   handleClick: () => void;
+  openLogin: () => void;
+  openRegister: () => void;
+
 }
 
-export default function Header({ handleClick, menuOpened }: Props) {
+export default function Header({ handleClick, menuOpened, openLogin, openRegister }: Props) {
   const [color, setColor] = useState("rgba(255, 255, 255, 0.25)");
   const [border, setBorder] = useState("2px solid #f9f9f9");
   const [shadow, setShadow] = useState("none");
 
-  
   const imageSource = menuOpened ? close : menu;
 
   const handleScroll = () => {
@@ -73,8 +75,8 @@ export default function Header({ handleClick, menuOpened }: Props) {
           <SecondaryNavItem>Services and prices</SecondaryNavItem>
         </SecondaryNav>
         <FlexWrapper>
-          <BlackButton>Login</BlackButton>
-          <TextButton>Register</TextButton>
+          <BlackButton onClick={openLogin}>Login</BlackButton>
+          <TextButton onClick={openRegister}>Register</TextButton>
         </FlexWrapper>
       </HeaderPartPink>
     </HeaderWrapper>
