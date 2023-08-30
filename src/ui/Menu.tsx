@@ -3,14 +3,16 @@ import usa from "../assets/usa.png";
 import arrowdown from "../assets/arrowdown.svg";
 import BlackButton from "../components/BlackButton";
 import TextButton from "../components/TextButton";
+import { useNavigate } from "react-router";
 
 interface Props {
   opened: boolean;
   openLogin: () => void;
-  openRegister: () => void;
+  openCalculator: () => void;
 }
 
-export default function Menu({ opened, openLogin, openRegister }: Props) {
+export default function Menu({ opened, openLogin, openCalculator }: Props) {
+  const navigate = useNavigate();
   return (
     <Wrapper $opened={opened}>
       <Content $opened={opened}>
@@ -18,7 +20,7 @@ export default function Menu({ opened, openLogin, openRegister }: Props) {
           <Navigation>
             <Item>Home</Item>
             <Item>About us</Item>
-            <Item>Calculator</Item>
+            <Item onClick={openCalculator}>Calculator</Item>
             <Item>Shop</Item>
             <Item>Services and prices</Item>
             <Item>FAQs</Item>
@@ -32,7 +34,13 @@ export default function Menu({ opened, openLogin, openRegister }: Props) {
           </Language>
         </Wrap>
         <Button onClick={openLogin}>Log in</Button>
-        <Register onClick={openRegister}>Registration</Register>
+        <Register
+          onClick={() => {
+            navigate("/register");
+          }}
+        >
+          Registration
+        </Register>
       </Content>
     </Wrapper>
   );

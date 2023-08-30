@@ -61,37 +61,36 @@ const Section = styled.section`
   margin-top: 80px;
 
   border-radius: 0px 306px 0px 0px;
-  border-top: 4px solid #ffc80a;
-  background: #f1e0a4;
+  background: #d72121;
   padding: 72px 72px 160px 72px;
 
   @media (max-width: ${Displays.mobile}) {
-    border-radius:0px;
+    border-radius: 0px;
     border: none;
     padding: 24px;
   }
 `;
 
 const Title = styled.h3`
-  color: #000;
+  color: #F9F9f9;
   font-size: 36px;
   font-weight: 500;
   font-size: 24px;
 
   @media (max-width: ${Displays.tablet}) {
-    font-size: 24px;  
+    font-size: 24px;
     font-weight: 400;
   }
 `;
 
 const Text = styled.p`
-  color: #000;
+  color: #F9F9f9;
   font-size: 20px;
   font-weight: 400;
   max-width: 710px;
 
   @media (max-width: ${Displays.tablet}) {
-    font-size: 16px;  
+    font-size: 16px;
     width: 90%;
   }
 `;
@@ -102,7 +101,7 @@ const ShowMore = styled.div`
   align-items: center;
   gap: 16px;
 
-  color: #000;
+  color: #F9F9f9;
   font-size: 20px;
   font-weight: 500;
 
@@ -117,7 +116,7 @@ const ShowMore = styled.div`
     &:nth-child(3) {
       display: flex;
       width: fit-content;
-      margin-top:24px;
+      margin-top: 24px;
     }
   }
 `;
@@ -133,6 +132,6 @@ const Flexible = styled(FlexWrapper)`
   align-items: flex-end;
   margin-bottom: 40px;
   @media (max-width: ${Displays.tablet}) {
-    margin-bottom:24px;
+    margin-bottom: 24px;
   }
 `;

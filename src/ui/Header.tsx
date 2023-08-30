@@ -10,22 +10,26 @@ import Displays from "../Displays";
 import menu from "../assets/menu.svg";
 import close from "../assets/close.svg";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+import { useAppSelector } from "../redux/hooks";
+import { RootState } from "../redux/store";
 
 interface Props {
   menuOpened: boolean;
   handleClick: () => void;
   openLogin: () => void;
-  openRegister: () => void;
-
+  openCalculator: () => void;
 }
 
-export default function Header({ handleClick, menuOpened, openLogin, openRegister }: Props) {
+export default function Header({ handleClick, menuOpened, openLogin, openCalculator }: Props) {
   const [color, setColor] = useState("rgba(255, 255, 255, 0.25)");
   const [border, setBorder] = useState("2px solid #f9f9f9");
   const [shadow, setShadow] = useState("none");
 
   const imageSource = menuOpened ? close : menu;
-
+  const navigate = useNavigate();
+  const tokenExists = useAppSelector((state: RootState) => state.token.value);
+  const logout = async () => {};
   const handleScroll = () => {
     if (color === "rgba(255, 255, 255, 0.25)") {
       setColor("#f9f9f9");
@@ -70,14 +74,24 @@ export default function Header({ handleClick, menuOpened, openLogin, openRegiste
       </HeaderPart>
       <HeaderPartPink $color={color} $shadow={shadow}>
         <SecondaryNav>
-          <SecondaryNavItem>Calculator</SecondaryNavItem>
+          <SecondaryNavItem onClick={openCalculator}>Calculator</SecondaryNavItem>
           <SecondaryNavItem>Shop</SecondaryNavItem>
           <SecondaryNavItem>Services and prices</SecondaryNavItem>
         </SecondaryNav>
-        <FlexWrapper>
-          <BlackButton onClick={openLogin}>Login</BlackButton>
-          <TextButton onClick={openRegister}>Register</TextButton>
-        </FlexWrapper>
+        {tokenExists === null ? (
+          <FlexWrapper>
+            <BlackButton onClick={openLogin}>Login</BlackButton>
+            <TextButton
+              onClick={() => {
+                navigate("/register");
+              }}
+            >
+              Register
+            </TextButton>
+          </FlexWrapper>
+        ) : (
+          <BlackButton onClick={logout}>Log out</BlackButton>
+        )}
       </HeaderPartPink>
     </HeaderWrapper>
   );

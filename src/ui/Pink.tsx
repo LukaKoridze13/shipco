@@ -5,7 +5,10 @@ import payment from "../assets/payment.png";
 import calculator from "../assets/calculator.png";
 import delivery from "../assets/delivery.png";
 import icon from "../assets/yellow.svg";
-export default function Pink() {
+interface Props {
+  openCalculator: () => void;
+}
+export default function Pink({ openCalculator }: Props) {
   return (
     <Section>
       <Content>
@@ -20,13 +23,13 @@ export default function Pink() {
         <Box>
           <BoxIcon src={payment} alt="Payment" />
           <TextWrapper>
-            <BoxTitle>Calculator</BoxTitle>
+            <BoxTitle>Payment</BoxTitle>
             <BoxText>unit of connected speech or writing.</BoxText>
           </TextWrapper>
           <BoxButton src={icon} />
         </Box>
-        <Box>
-          <BoxIcon src={calculator} alt="Calculator" />
+        <Box onClick={openCalculator}>
+          <BoxIcon  src={calculator} alt="Calculator" />
           <TextWrapper>
             <BoxTitle>Calculator</BoxTitle>
             <BoxText>unit of connected speech or writing.</BoxText>
@@ -48,7 +51,7 @@ export default function Pink() {
 
 const Section = styled.section`
   border-radius: 0px 0px 0px 402px;
-  background-color: #da4b5c;
+  background-color: #d72121;
   margin-top: -93.98px;
   padding-left: 110px;
   padding-top: 200px;

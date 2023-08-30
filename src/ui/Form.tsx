@@ -3,7 +3,7 @@ import eye from "../assets/eye.svg";
 import eyehidden from "../assets/eyehidden.svg";
 import checkImg from "../assets/check.svg";
 import checkedImg from "../assets/checked.svg";
-import { useState } from "react";
+import { ChangeEventHandler, useState } from "react";
 import BlackButton from "../components/BlackButton";
 import Displays from "../Displays";
 
@@ -31,8 +31,8 @@ export const Close = styled.img`
   right: 40px;
 
   @media (max-width: ${Displays.mobile}) {
-        top: 16px;
-        right: 16px;
+    top: 16px;
+    right: 16px;
   }
 
   cursor: pointer;
@@ -51,7 +51,7 @@ export const FormTitle = styled.p`
 
 export const Label = styled.label`
   color: #070707;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 400;
   margin-top: 24px;
   display: block;
@@ -77,16 +77,17 @@ export const Input = styled.input<{ $width?: string }>`
 
 interface PasswordInputProps {
   placeholder: string;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
-export const PasswordInput = ({ placeholder }: PasswordInputProps) => {
+export const PasswordInput = ({ placeholder, onChange }: PasswordInputProps) => {
   const [hidden, setHidden] = useState(true);
   const handleClick = () => {
     hidden ? setHidden(false) : setHidden(true);
   };
   return (
     <PasswordWrapper>
-      <Input placeholder={placeholder} type={hidden ? "password" : "text"} />
+      <Input onChange={onChange} placeholder={placeholder} type={hidden ? "password" : "text"} />
       <Eye src={hidden ? eye : eyehidden} alt="eye" onClick={handleClick} />
     </PasswordWrapper>
   );
@@ -113,6 +114,19 @@ export const Checkbox = ({ text }: { text: string }) => {
   return (
     <Check onClick={handleClick}>
       <CheckImage src={checked ? checkedImg : checkImg} />
+      <CheckText>{text}</CheckText>
+    </Check>
+  );
+};
+
+export const CheckboxOne = ({ text, current, value, onClick }: { text: string; current: string; value: string; onClick: (param: string) => void }) => {
+  return (
+    <Check
+      onClick={() => {
+        onClick(value);
+      }}
+    >
+      <CheckImage src={value === current ? checkedImg : checkImg} />
       <CheckText>{text}</CheckText>
     </Check>
   );
