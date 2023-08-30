@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { Checkbox, Close, Form, FormTitle, Input, Label, PasswordInput, Submit } from "./Form";
+import { Close, Form, FormTitle, Input, Label, Submit } from "./Form";
 import close from "../assets/close.svg";
 import FlexWrapper from "../components/FlexWrapper";
 interface Props {
